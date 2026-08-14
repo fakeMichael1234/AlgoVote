@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vote — {{ poll['question'] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h2 class="question">{{ poll['question'] }}</h2>
+        {% if session.get('username') %}
+          <p class="muted">Logged in as <strong>{{ session.get('username') }}</strong> — <a href="/logout">Change</a></p>
+        {% endif %}
+        <form id="voteForm" action="/submit_vote" method="post">
+          <input type="hidden" name="poll_id" value="{{ poll['id'] }}">
+          <div class="options">
+            {% for opt in options %}
+            <label class="option">
+              <input type="radio" name="option" value="{{ opt['id'] }}"> {{ opt['text'] }}
+            </label>
+            {% endfor %}
+          </div>
+          <div class="actions">
+            <button id="submitBtn" class="btn primary" type="submit">Submit Vote</button>
+            <a class="btn" href="/">Back</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

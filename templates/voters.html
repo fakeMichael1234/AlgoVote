@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Voters — {{ poll['question'] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h2>Voter Details</h2>
+        <p class="question">{{ poll['question'] }}</p>
+        <div class="voter-list">
+          {% for v in voters %}
+            <div class="option">
+              <strong>{{ v['username'] or '—' }}</strong>
+              <div class="muted">Voted for: {{ v['option_text'] or '—' }} — {{ v['created_at'] }}</div>
+            </div>
+          {% else %}
+            <p>No votes yet.</p>
+          {% endfor %}
+        </div>
+        <a class="btn" href="/admin">Back to Admin</a>
+      </section>
+    </main>
+  </body>
+</html>

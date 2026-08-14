@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AlgoVote — Simple Anonymous Voting</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <div>
+          <h1 class="logo">AlgoVote</h1>
+          <p class="tag">Simple. Anonymous. Transparent.</p>
+        </div>
+        <div>
+          {% if session.get('username') %}
+            <span class="muted">Signed in as <strong>{{ session.get('username') }}</strong></span>
+            <a class="btn" href="/logout">Logout</a>
+          {% else %}
+            <a class="btn" href="/login?next=/">Login</a>
+          {% endif %}
+        </div>
+      </header>
+
+      <section class="card">
+        <h2>Current Poll</h2>
+        {% if poll %}
+          <p class="question">{{ poll['question'] }}</p>
+          <a class="btn" href="/vote/{{ poll['id'] }}">Vote Now</a>
+        {% else %}
+          <p>No active poll. Check back later or contact the admin.</p>
+        {% endif %}
+      </section>
+
+      <footer class="card muted">
+        <a href="/admin">Admin</a>
+      </footer>
+    </main>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

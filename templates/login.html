@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login — AlgoVote</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h2>Enter Username</h2>
+        <p>No password required. This username will be stored in your browser session.</p>
+        <form method="post" action="/login">
+          <input type="hidden" name="next" value="{{ next }}">
+          <label>Username</label>
+          <input name="username" placeholder="Choose a display name">
+          <div class="actions">
+            <button class="btn primary" type="submit">Continue to Vote</button>
+            <a class="btn" href="/">Cancel</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
